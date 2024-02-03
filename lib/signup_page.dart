@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:section_2/repository/supabase.dart';
+import 'package:section_2/show_error.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -9,6 +12,11 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   bool? flag = false;
+  String email = "";
+  String phone_number = "";
+  String password = "";
+  String full_name = "";
+  String confirm_password = "";
 
 
   @override
@@ -50,7 +58,7 @@ class _SignupPageState extends State<SignupPage> {
             child: TextField(
                 style: TextStyle(color: Colors.grey, decorationThickness: 3),
                 onChanged: (text)
-                {},
+                {full_name = text;},
                 decoration: InputDecoration(
                   hintStyle: TextStyle(fontSize: 17),
                   border: OutlineInputBorder(
@@ -77,7 +85,7 @@ class _SignupPageState extends State<SignupPage> {
                 child: TextField(
                     style: TextStyle(color: Colors.grey, decorationThickness: 3),
                     onChanged: (text)
-                    {},
+                    {phone_number = text;},
                     decoration: InputDecoration(
                       hintStyle: TextStyle(fontSize: 17),
                       border: OutlineInputBorder(
@@ -104,7 +112,7 @@ class _SignupPageState extends State<SignupPage> {
                 child: TextField(
                     style: TextStyle(color: Colors.grey, decorationThickness: 3),
                     onChanged: (text)
-                    {},
+                    {email = text;},
                     decoration: InputDecoration(
                       hintStyle: TextStyle(fontSize: 17),
                       border: OutlineInputBorder(
@@ -131,7 +139,7 @@ class _SignupPageState extends State<SignupPage> {
                 child: TextField(
                     style: TextStyle(color: Colors.grey, decorationThickness: 3),
                     onChanged: (text)
-                    {},
+                    {password = text;},
                     decoration: InputDecoration(
                       hintStyle: TextStyle(fontSize: 17),
                       border: OutlineInputBorder(
@@ -158,7 +166,7 @@ class _SignupPageState extends State<SignupPage> {
                 child: TextField(
                     style: TextStyle(color: Colors.grey, decorationThickness: 3),
                     onChanged: (text)
-                    {},
+                    {confirm_password = text;},
                     decoration: InputDecoration(
                       hintStyle: TextStyle(fontSize: 17),
                       border: OutlineInputBorder(
@@ -219,8 +227,14 @@ class _SignupPageState extends State<SignupPage> {
                                     )
                                 )
                             ),
-                            onPressed: () {
-                              Navigator.of(context).pop();
+                            onPressed: () async{
+                              signUp(email: email,
+                                  password: password,
+                                  confirm_password: confirm_password,
+                                  full_name: full_name,
+                                  phone_number: phone_number,
+                                  onResponse: (AuthResponse response){Navigator.of(context).pop();},
+                                  onError: (String e) {showError(context, e);});
                             },
                             child: Text("Sign up", style: TextStyle(fontSize: 16, color: Colors.white),)),))),
               SizedBox(height: 20,),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:section_2/home_page.dart';
+import 'package:section_2/repository/supabase.dart';
+import 'package:section_2/show_error.dart';
 import 'package:section_2/signup_page.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -10,6 +13,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool? flag = false;
+  String email = "";
+  String password = "";
 
 
   @override
@@ -50,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
               child: TextField(
                   style: TextStyle(color: Colors.grey, decorationThickness: 3),
                   onChanged: (text)
-                  {},
+                  {email = text;},
                   decoration: InputDecoration(
                     hintStyle: TextStyle(fontSize: 17),
                     border: OutlineInputBorder(
@@ -77,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
               child: TextField(
                   style: TextStyle(color: Colors.grey, decorationThickness: 3),
                   onChanged: (text)
-                  {},
+                  {password = text;},
                   decoration: InputDecoration(
                     hintStyle: TextStyle(fontSize: 17),
                     border: OutlineInputBorder(
@@ -143,8 +148,11 @@ class _LoginPageState extends State<LoginPage> {
                                   )
                               )
                           ),
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                          onPressed: () async{
+                            signIn(email: email,
+                                password: password,
+                                onResponse: (AuthResponse response){Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(full_name: response.user?.userMetadata?['full_name'])));},
+                                onError: (String e) {showError(context, e);});
                           },
                           child: Text("Login", style: TextStyle(fontSize: 16, color: Colors.white),)),))),
             SizedBox(height: 20,),

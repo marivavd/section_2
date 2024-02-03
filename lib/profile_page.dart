@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  final String full_name;
+  const ProfilePage({super.key, required this.full_name});
 
   State<ProfilePage> createState() => _SignupPageState();
 }
@@ -11,6 +12,7 @@ class _SignupPageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    String name = widget.full_name;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -26,7 +28,7 @@ class _SignupPageState extends State<ProfilePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hello Ken',
+                    'Hello $name',
                     style: TextStyle(
                       fontSize: 16,
                       fontFamily: 'Roboto'
