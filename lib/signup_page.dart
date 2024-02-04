@@ -22,10 +22,11 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+      body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
           SizedBox(height: 68,),
           Text(
@@ -60,6 +61,7 @@ class _SignupPageState extends State<SignupPage> {
                 onChanged: (text)
                 {full_name = text;},
                 decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(4),
                   hintStyle: TextStyle(fontSize: 17),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(4),
@@ -87,6 +89,7 @@ class _SignupPageState extends State<SignupPage> {
                     onChanged: (text)
                     {phone_number = text;},
                     decoration: InputDecoration(
+                      contentPadding: EdgeInsets.all(4),
                       hintStyle: TextStyle(fontSize: 17),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4),
@@ -114,6 +117,7 @@ class _SignupPageState extends State<SignupPage> {
                     onChanged: (text)
                     {email = text;},
                     decoration: InputDecoration(
+                      contentPadding: EdgeInsets.all(4),
                       hintStyle: TextStyle(fontSize: 17),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4),
@@ -141,6 +145,7 @@ class _SignupPageState extends State<SignupPage> {
                     onChanged: (text)
                     {password = text;},
                     decoration: InputDecoration(
+                      contentPadding: EdgeInsets.all(4),
                       hintStyle: TextStyle(fontSize: 17),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4),
@@ -168,6 +173,7 @@ class _SignupPageState extends State<SignupPage> {
                     onChanged: (text)
                     {confirm_password = text;},
                     decoration: InputDecoration(
+                      contentPadding: EdgeInsets.all(4),
                       hintStyle: TextStyle(fontSize: 17),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4),
