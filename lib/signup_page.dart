@@ -23,7 +23,6 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
         child: Column(
 
             crossAxisAlignment: CrossAxisAlignment.start,
