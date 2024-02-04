@@ -57,6 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                   onChanged: (text)
                   {email = text;},
                   decoration: InputDecoration(
+                    contentPadding: EdgeInsets.all(4),
                     hintStyle: TextStyle(fontSize: 17),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(4),
@@ -84,6 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                   onChanged: (text)
                   {password = text;},
                   decoration: InputDecoration(
+                    contentPadding: EdgeInsets.all(4),
                     hintStyle: TextStyle(fontSize: 17),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(4),
